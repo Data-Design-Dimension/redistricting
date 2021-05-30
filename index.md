@@ -22,6 +22,7 @@ District Builder, Azavea, Last accessed 5/23/2021 (PA House of Reps stated Last 
 [https://www.fec.gov/](https://www.fec.gov/)
 [https://www.fec.gov/campaign-finance-data/contributions-individuals-file-description/](https://www.fec.gov/campaign-finance-data/contributions-individuals-file-description/)
 
+Decennial Census, United States Census Bureau, Accessed 5/30/2021, https://www.census.gov/history/www/programs/demographic/decennial_census.html
 
 ###Referenced
 State-by-state redistricting procedures, Ballotpedia.org, Last accessed 5/23/2021, [https://ballotpedia.org/State-by-state_redistricting_procedures](https://ballotpedia.org/State-by-state_redistricting_procedures)
