@@ -111,8 +111,8 @@ df_map = df[-is_All_States]
 
 
 #Assign a variable for text wrapped descriptive graph title that will be called in choropleth title attribute.
-split_text_graph_title = textwrap.fill("States in the map are colored by the number of House seats each gained or lost after that year.<br>Select the play button to watch changes over this period, or select a specific year on the timeline.",
-                                  width=30)
+# split_text_graph_title = textwrap.fill("Select the play button to watch changes over this period, or select a specific year on the timeline.<br>States in the map are colored by the number of House seats each gained or lost after that year.",
+#                                   width=30) # commented out from Plotly.Express title to move to Dash text component to wrap responsively instead.
 #plot it as a choropleth map
 fig = px.choropleth(df_map,
           locations = 'State_code',
@@ -127,42 +127,57 @@ fig = px.choropleth(df_map,
           'Seat_change': 'Seat change', 'Year': 'Census Year'
           },
           animation_frame="Year",
-          color_continuous_scale="Inferno",
+          color_continuous_scale="BrBG",
           locationmode='USA-states',
           scope="usa",
-          range_color=(-5, 10),
-          title=split_text_graph_title,
-          height=600
+          range_color=(-5, 10)#,
+          # below did not wrap responsively either; commented out from Plotly.Express title to move to Dash text component to wrap responsively instead.
+        #   title="Select the play button to watch changes over this period, or select a specific year on the timeline. States in the map are colored by the number of House seats each gained or lost after that year." #split_text_graph_title,
+        #   height=600
          )
 
-
-app = JupyterDash(__name__, external_stylesheets=[dbc.themes.JOURNAL])
+# app, from Dash Bootstrap Components library using Journal theme; and from dbc also scaling the viewport by device width to be responsive e.g. on mobile, and avoid horizontal scrollbars if possible and ensure legend is visible always.
+app = JupyterDash(
+    __name__,
+    external_stylesheets=[dbc.themes.JOURNAL],
+    meta_tags=[
+        {"name": "viewport",
+        "content": "width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=1.0"},
+    ],
+    )
 
 app.layout = dbc.Card(
     [
         dbc.CardHeader(html.H1("Changing U.S. Population Impacts Redistricting", style={'text-align': 'left'})),
         dbc.CardBody(
             [
-                html.H3("Since 1970, as required by Article I, Section 2, of the U.S. Constitution, every ten years state populations have determined the number of seats appropriated for each state in the U.S. House of Representatives. Decennial census data for 1910 to 2020 show changes in state populations that resulted in the redrawing of district areas when the number of House seats for a state increased or decreased.", className="card-title"),
+                html.H4("Since 1970, as required by Article I, Section 2, of the U.S. Constitution, every ten years state populations have determined the number of seats appropriated for each state in the U.S. House of Representatives. Decennial census data for 1910 to 2020 show changes in state populations that resulted in the redrawing of district areas when the number of House seats for a state increased or decreased.", className="card-title"),
                 html.Br(), #adds a line break
-                dcc.Graph(figure=fig, className="card-text"),
+                html.H5("Select the play button to watch changes over this period, or select a specific year on the timeline. States in the map are colored by the number of House seats each gained or lost after that year."),
+                dcc.Graph(id='map-animated', figure=fig,
+                         config={
+                             'staticPlot': False,       # True, False
+                             'scrollZoom': True,        # True, False
+                             'doubleClick': 'reset',    # 'reset', 'autosize' or 'reset+autosize', False
+                             'showTips': True,          # True, False
+                             'displayModeBar': 'hover',    # True, False, 'hover'
+                             'watermark': True,         # Shows Plotly logo in mode bar
+                             # 'modeBarButtonsToRemove': ['pan2d', 'select2d'],
+                             },
+                         className="card-text"
+                         ),
             ]
         ),
         dbc.CardFooter(
             [
-                dbc.CardLink("Data source: U.S. Census Bureau, Table C2. Apportionment Population and Number of Seats in U.S. House of Representatives by State: 1910 to 2020", href="www.census.gov/data/tables/2020/dec/2020-apportionment-data.html"),
                 dbc.Button("Be the first to know when 2020 Census results become available! Sign up at www.census.gov.", href="https://public.govdelivery.com/accounts/USCENSUS/signup/22746", color="info"),
+                html.Br(), #adds a line break
+                dbc.CardLink("Data source: U.S. Census Bureau, Table C2. Apportionment Population and Number of Seats in U.S. House of Representatives by State: 1910 to 2020    ", href="www.census.gov/data/tables/2020/dec/2020-apportionment-data.html")
             ]
         ),
     ],
-    style={"width": "100rem"}
+    # style={"width": "100rem"}
 
-# app.layout = html.Div([
-#     html.H1("Changing U.S. Population Impacts Redistricting", style={'text-align': 'left'}),
-#     html.H3("Since 1970, as required by Article I, Section 2, of the U.S. Constitution, every ten years state populations have determined the number of seats appropriated for each state in the U.S. House of Representatives. Decennial census data for 1910 to 2020 show changes in state populations that resulted in the redrawing of district areas when the number of House seats for a state increased or decreased."),
-#     html.Br(), #adds a line break
-#     html.Br(), #adds a line break
-#     dcc.Graph(figure=fig)
 )
 
 
