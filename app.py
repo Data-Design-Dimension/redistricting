@@ -22,7 +22,7 @@ import textwrap
 #Load the Excel file saved locally and read the tab I normalized into a dataframe
 #Original Excel file source under subheading "Table C2. Apportionment Population and Number of Seats in U.S. House of Representatives by State: 1910 to 2020"
 #can be found at: https://www.census.gov/data/tables/2020/dec/2020-apportionment-data.html
-df = pd.read_excel("../data/apportionment-2020-tableC2.xlsx", sheet_name="Table_C2_df")
+df = pd.read_excel("/home/dadeda/redistricting/data/apportionment-2020-tableC2.xlsx", sheet_name="Table_C2_df")
 #Sort the dataframe by year ascending, then State will be alpha as is; ascending=True is defaulted.
 df = df.sort_values(by=['Year','State'])
 #To use Plotly Express built in US States geography, the two letter abbreviated state code is required.
@@ -120,7 +120,7 @@ fig = px.choropleth(df_map,
           hover_name="State", #column to add to hover information
           hover_data={#determines what shows in hover text (default was everything in mapped variables)
               'Year':True, 'Seat change':True,'Apportionment population':True,
-   'Number of representatives':True, 
+   'Number of representatives':True,
    'Average persons per representative':True, 'State_code':False
           },
           labels={#replaces default labels by column name
@@ -172,7 +172,7 @@ server = app.server
 #Run i.e. serve the app using run_server, and display result inline in the notebook.
 #Unlike the standard Dash.run_server method, the JupyterDash.run_server method doesn't block execution of the notebook. It serves the app in a background thread, making it possible to run other notebook calculations while the app is running.
 #This makes it possible to iterativly update the app without rerunning the potentially expensive data processing steps.
-#By default, run_server displays a URL that you can click on to open the app in a browser tab. The mode argument to run_server can be used to change this behavior. 
+#By default, run_server displays a URL that you can click on to open the app in a browser tab. The mode argument to run_server can be used to change this behavior.
 #Setting mode="inline" will display the app directly in the notebook output cell.
-app.run_server(debug=True, use_reloader=False)#or add mode='inline' to display in Jupyter Notebook.
+#app.run_server(debug=True, use_reloader=False)#or add mode='inline' to display in Jupyter Notebook. #commented out for running on PythonAnywhere so it does not prevent WSGI from working
 
