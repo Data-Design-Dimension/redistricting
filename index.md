@@ -1,4 +1,11 @@
-## Redistricting  *(Brief)*
+## Redistricting  
+---
+
+__Watch how changing U.S. population has impacted the need for redistricting over 100 years at [https://dadeda.pythonanywhere.com/](https://dadeda.pythonanywhere.com/).__
+
+---
+
+*(Brief)*
 
 - __Goal(s):__ Visualize how related dataset(s) show the ‘face’ of some electoral districts; unearth stories of district attributes, like economic and/or judicial power.
 
