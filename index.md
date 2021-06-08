@@ -3,11 +3,6 @@
 
 __Watch how changing populations have impacted the need for redistricting in some states more than others over 100 years of United States history, at [https://dadeda.pythonanywhere.com/](https://dadeda.pythonanywhere.com/).__
 
-Pictured here, CA gained 8 seats in 1960, a gain exceeded only by Califoria itself 30 years earlier. Alaska and Hawaii were admitted, respectively, as the 49th and 50th states of the Union in 1959, and their first comparison for change in House seats was recorded in the next decennial census of 1970.
-
-<img src="https://github.com/Data-Design-Dimension/redistricting/blob/main/img/redistricting-plot.png" alt="Interactive choropleth map animating U.S. population change 1910 to 2020 and colored by a scale of number of House of Representative seats gained or lost each ten years.">
-
-Before Californian voters gained more input to their state's redistricting process through a series of passed propositions, California saw significant increases in its number of House of Representatives seats over the first half of the 20th century. Shifts included massive migration following the Great Depression during the decade when it gained a record high nine House seats in 1930, and again its growth returned after World War II ended in 1945. __Learn more and explore the changes in specific years at the link above.__
 
 This visualization project was built by Kathryn Hurchla for *Data Design Dimension* in Python libraries Plotly.Express, Dash, Bootstrap Components for responsive web modules, and deployed using a virtual environment with PythonAnywhere. Exploratory data analysis was first completed in Jupyter Notebook. As a reference to *dadeda* process, a design brief and research citations written in early stages are included below. These serve to align with objectives and audience, and final products often transcend aims outlined in such planning. Project fulfilled a masters in data analytics and visualization course assignment of Kathryn's.
 
